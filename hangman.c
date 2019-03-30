@@ -9,4 +9,5 @@ int main()
   char hangmanword[100];
   printf("This has been hell, it better be working now or else im done with this shit.");
   _getch(); 
+  so youre saying k c=visual se push  ni hoskta?
 }
