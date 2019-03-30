@@ -7,5 +7,6 @@ void hangmanword(int);
 int main()
 {
   char hangmanword[100];
-  getch(); 
+  printf("This has been hell, it better be working now or else im done with this shit.");
+  _getch(); 
 }
