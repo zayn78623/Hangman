@@ -6,6 +6,7 @@
 void hangmanword(int);
 int main()
 {
+  printf("dude wtf man");
   char hangmanword[100];
   getch(); 
 }
