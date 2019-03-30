@@ -26,5 +26,5 @@ int fact(int n)
 	{
 		result = fact*loop;
 		return result;
-	}
+	} sad
 }
