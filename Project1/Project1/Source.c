@@ -1,6 +1,19 @@
 #include<stdio.h>
+#include<conio.h>
+#include<ctype.h>
+
 
 void main() {
-	printf("HELLO MOTHAFUCKA\n");
-		system("pause");
+
+	printf("*******************************************************************************\n");
+	printf("**   **\n");
+	printf("**   **\n");
+	printf("**   **\n");
+	printf("*******\n");
+	printf("**   **\n");
+	printf("**   **\n");
+	printf("**   **\n");
+	printf("*******************************************************************************\n");
+
+	system("pause");
 }
