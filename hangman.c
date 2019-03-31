@@ -10,7 +10,6 @@ int main()
   int num;
   printf("This has been hell, it better be working now or else im done with this shit.");
   _getch(); 
-  so youre saying k c = visual se push  ni hoskta;
   printf("Enter number:");
   scanf_s("%d", &num);
   printf("%d! = %d ", num, fact(num));
@@ -18,13 +17,12 @@ int main()
 }
 int fact(int n)
 {
-	n = 1;
 	int loop;
 	int result;
 
 	for ( loop = 1; loop <= n ; loop++)
 	{
-		result = fact*loop;
+		result = result*loop;
 		return result;
 	}
 }
