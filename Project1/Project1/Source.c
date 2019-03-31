@@ -9,9 +9,9 @@
 void main() {
 	srand(time(NULL));
 #		#######
-# #		#
-#		#####
-#		#
+# 		#
+#		#####	
+#		#					expectations  why did ya write lover ehhhhh have you found yourself a new one?
 #		#
 	int i, j, k , randomindex = rand()%9;
 	char Words[][16] = { "boiii", "watermellon", "really", "baka" , "expectations" , "homoglobin" , "lover" , "program" , "random" };
