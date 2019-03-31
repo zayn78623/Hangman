@@ -16,17 +16,21 @@ void main() {
 	int numoflifes = 5;
 	int numcorrect = 0;
 	int oldcorrect = 0;
+	char ch;
+	printf("\t\t--------------------------------------------------------------------------\n");
+	printf("\t\t| #      #      ##      #     #   #######   #      #      ##     #     # |\n");
+	printf("\t\t| #      #     #  #     ##    #   #         ##     #     #  #    ##    # |\n");
+	printf("\t\t| #      #    #    #    # #   #   #         # #   ##    #    #   # #   # |\n");
+	printf("\t\t| ########   ########   #  #  #   #  ####   #   #  #   ########  #  #  # |\n");
+	printf("\t\t| #      #   #      #   #   # #   #     #   #      #   #      #  #   # # |\n");
+	printf("\t\t| #      #   #      #   #    ##   #     #   #      #   #      #  #    ## |\n");
+	printf("\t\t| #      #   #      #   #     #   #######   #      #   #      #  #     # |\n");
+	printf("\t\t--------------------------------------------------------------------------\n");
 
-	printf("--------------------------------------------------------------------------\n");
-	printf("| #      #      ##      #     #   #######   #      #      ##     #     # |\n");
-	printf("| #      #     #  #     ##    #   #         ##     #     #  #    ##    # |\n");
-	printf("| #      #    #    #    # #   #   #         # #   ##    #    #   # #   # |\n");
-	printf("| ########   ########   #  #  #   #  ####   #   #  #   ########  #  #  # |\n");
-	printf("| #      #   #      #   #   # #   #     #   #      #   #      #  #   # # |\n");
-	printf("| #      #   #      #   #    ##   #     #   #      #   #      #  #    ## |\n");
-	printf("| #      #   #      #   #     #   #######   #      #   #      #  #     # |\n");
-	printf("--------------------------------------------------------------------------\n");
 
+	printf("\n\n\n\n\n\t\t\t\tPress P to play\n\t\t\t\tPress I for Instructions\n\t\t\t\tPresss C for Credits\n\t\t\t\tPress Q to Quit\n\n\t\t\t\tYour Choixe");
+
+	ch = getchar();
 	//						  0 1 2 3 4 5
 	//						  W A T E R M E L L O N
 	int letterguessed[12] = { 0,0,0,0,0,0,0,0,0,0,0 , 0 };
@@ -34,87 +38,93 @@ void main() {
 	
 	int quit = 0;
 	char letterentered;
-
-	printf("Guess Words : %s randomindex:%d lengthofwords: %d \n",
-		Words[randomindex], randomindex, lengthofword);
-
-	//game loop
-	while (numcorrect < lengthofword)
+	switch (ch)
 	{
-		printf("Next Turn \n WORD : ");
-		for (i = 0; i < lengthofword; i++)
-		{
+	case 'P':
+	case'p':
 
-			if (letterguessed[i] == 1) {
-				printf("%c", Words[randomindex][i]);
-			}
-			else
+		system("cls");
+		printf("\nGuess Words : %s randomindex:%d lengthofwords: %d \n",
+			Words[randomindex], randomindex, lengthofword);
+
+		//game loop
+		while (numcorrect < lengthofword)
+		{
+			printf("Next Turn \n WORD : ");
+			for (i = 0; i < lengthofword; i++)
 			{
-				printf("-");
+
+				if (letterguessed[i] == 1) {
+					printf("%c", Words[randomindex][i]);
+				}
+				else
+				{
+					printf("-");
+				}
 			}
-		}
 
-		printf("\nscore:%d\n", numcorrect);
-		printf("Lives Left :%d\n", numoflifes);
-		printf("enter a letter:");
-		fgets(guess, 16, stdin);
+			printf("\nscore:%d\n", numcorrect);
+			printf("Lives Left :%d\n", numoflifes);
+			printf("enter a letter:");
+			fgets(guess, 16, stdin);
 
-		if (strncmp(guess, "quit", 4) == 0) {
-			quit = 1;
-			break;
-		}
-		
-		letterentered = guess[0];
-		printf("letterentered:%c \n", letterentered);
-
-		oldcorrect = numcorrect;
-
-		for (i = 0; i < lengthofword; i++)
-		{
-			if (letterguessed[i] == 1) 
-{
-				continue;
-			}
-			if (letterentered == Words[randomindex][i])
-			{ 
-				letterguessed[i] = 1;
-				++numcorrect;
-			}
-		
-
-			
-
-		}
-		if (oldcorrect == numcorrect)
-		{
-			numoflifes--;
-			printf("sorry Wrong guess\n");
-
-			if (numoflifes == 0) {
+			if (strncmp(guess, "quit", 4) == 0) {
+				quit = 1;
 				break;
 			}
 
-		}
-		else
-		{
-			printf("Correct guess\n");
-		}
-		MessageBeep(400);
-		Sleep(1000);
-		system("cls");
+			letterentered = guess[0];
+			printf("letterentered:%c \n", letterentered);
 
-	}//while loop
-	
-	if (quit == 1)
-	{
-		printf("\nYOU QUIT!!\n");
-	}
-	else if (numoflifes == 0)
-	{
-		printf("\n  you lost.\n");
-	}
-	else {
-		printf("YOU WIN !!\n");
+			oldcorrect = numcorrect;
+
+			for (i = 0; i < lengthofword; i++)
+			{
+				if (letterguessed[i] == 1)
+				{
+					continue;
+				}
+				if (letterentered == Words[randomindex][i])
+				{
+					letterguessed[i] = 1;
+					++numcorrect;
+				}
+
+
+
+
+			}
+			if (oldcorrect == numcorrect)
+			{
+				numoflifes--;
+				printf("sorry Wrong guess\n");
+
+				if (numoflifes == 0) {
+					break;
+				}
+
+			}
+			else
+			{
+				printf("Correct guess\n");
+			}
+			MessageBeep(400);
+			Sleep(1000);
+			system("cls");
+
+		}//while loop
+
+		if (quit == 1)
+		{
+			printf("\nYOU QUIT!!\n");
+		}
+		else if (numoflifes == 0)
+		{
+			printf("\n  you lost.\n");
+		}
+		else {
+			printf("YOU WIN !!\n");
+		}
 	}
 	system("pause");
 
