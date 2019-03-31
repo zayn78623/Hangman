@@ -9,23 +9,33 @@
 void main() {
 	srand(time(NULL));
 
-	int i, j, k , randomindex = rand()%4;
-	char Words[][16] = { "boiii", "watermellon", "really", "baka" };
+	int i, j, k , randomindex = rand()%9;
+	char Words[][16] = { "boiii", "watermellon", "really", "baka" , "expectations" , "homoglobin" , "lover" , "program" , "random" };
 	char word , guess[16];
 	int lengthofword = strlen(Words[randomindex]);
 	int numoflifes = 5;
 	int numcorrect = 0;
 	int oldcorrect = 0;
 
+	printf("--------------------------------------------------------------------------\n");
+	printf("| #      #      ##      #     #   #######   #      #      ##     #     # |\n");
+	printf("| #      #     #  #     ##    #   #         ##     #     #  #    ##    # |\n");
+	printf("| #      #    #    #    # #   #   #         # #   ##    #    #   # #   # |\n");
+	printf("| ########   ########   #  #  #   #  ####   #   #  #   ########  #  #  # |\n");
+	printf("| #      #   #      #   #   # #   #     #   #      #   #      #  #   # # |\n");
+	printf("| #      #   #      #   #    ##   #     #   #      #   #      #  #    ## |\n");
+	printf("| #      #   #      #   #     #   #######   #      #   #      #  #     # |\n");
+	printf("--------------------------------------------------------------------------\n");
+
 	//						  0 1 2 3 4 5
 	//						  W A T E R M E L L O N
-	int letterguessed[11] = { 0,0,0,0,0,0,0,0,0,0,0 };
+	int letterguessed[12] = { 0,0,0,0,0,0,0,0,0,0,0 , 0 };
 	
 	
 	int quit = 0;
 	char letterentered;
 
-	printf("Guess Words : %s randomindex:%d lengthofwords: %.1d \n",
+	printf("Guess Words : %s randomindex:%d lengthofwords: %d \n",
 		Words[randomindex], randomindex, lengthofword);
 
 	//game loop
