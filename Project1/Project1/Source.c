@@ -28,7 +28,7 @@ void main() {
 	printf("\t\t--------------------------------------------------------------------------\n");
 
 
-	printf("\n\n\n\n\n\t\t\t\tPress P to play\n\t\t\t\tPress I for Instructions\n\t\t\t\tPresss C for Credits\n\t\t\t\tPress Q to Quit\n\n\t\t\t\tYour Choixe");
+	printf("\n\n\n\n\n\t\t\t\tPress P to play\n\t\t\t\tPress I for Instructions\n\t\t\t\tPresss C for Credits\n\t\t\t\tPress Q to Quit\n\n\t\t\t\tYour Choice: ");
 
 	ch = getchar();
 	//						  0 1 2 3 4 5
@@ -42,7 +42,7 @@ void main() {
 	{
 	case 'P':
 	case'p':
-
+	
 		system("cls");
 		printf("\nGuess Words : %s randomindex:%d lengthofwords: %d \n",
 			Words[randomindex], randomindex, lengthofword);
