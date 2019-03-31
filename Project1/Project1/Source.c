@@ -12,6 +12,7 @@ void main() {
 # #		#
 #		#####
 #		#
+#		#
 	int i, j, k , randomindex = rand()%9;
 	char Words[][16] = { "boiii", "watermellon", "really", "baka" , "expectations" , "homoglobin" , "lover" , "program" , "random" };
 	char word , guess[16];
