@@ -17,7 +17,7 @@ void main() {
 	int numcorrect = 0;
 	int oldcorrect = 0;
 	char letterentered;
-	int letterguessed[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+	int letterguessed[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };//checker
 	int quit = 0;
 	char ch;
 oxy:
@@ -55,11 +55,11 @@ oxy:
 			Sleep(500);
 			printf(".");
 			Sleep(500);
-			printf(".");
+			printf(".");//loading
 			system("cls");
 
 			printf("\nGuess Words : %s randomindex:%d lengthofwords: %d \n",
-				Words[randomindex], randomindex, lengthofword);
+				Words[randomindex], randomindex, lengthofword);//word checker
 
 			//game loop
 			while (numcorrect < lengthofword)
@@ -75,20 +75,20 @@ oxy:
 					{
 						printf("-");
 					}
-				}
+				}//correct word shower
 
-				printf("\nscore:%d\n", numcorrect);
-				printf("Lives Left :%d\n", numoflifes);
+				printf("\nscore:%d\n", numcorrect);//Score
+				printf("Lives Left :%d\n", numoflifes);//number of lives
 				printf("enter a letter:");
-				fgets(guess, 16, stdin);
+				fgets(guess, 16, stdin);//Charater input
 
 				if (strncmp(guess, "quit", 4) == 0) {
 					quit = 1;
 					break;
-				}
+				}//if character types quit the game ends
 
 				letterentered = guess[0];
-				printf("letter Entered:%c \n", letterentered);
+				printf("letter Entered:%c \n", letterentered);//Letter entered debugging
 
 				oldcorrect = numcorrect;
 
@@ -102,7 +102,7 @@ oxy:
 					{
 						letterguessed[i] = 1;
 						++numcorrect;
-					}
+					}//Score increaser
 
 
 
@@ -115,13 +115,13 @@ oxy:
 
 					if (numoflifes == 0) {
 						break;
-					}
+					}//no of lifes counter
 
 				}
 				else
 				{
 					printf("Correct guess\n");
-				}
+				}//Result shower
 
 
 				MessageBeep(400);
@@ -152,19 +152,19 @@ oxy:
 			_getch();
 			system("cls");
 			printf("\n\n\n\n\t\t\t\t\t ok");
-			break;
+			break;// Credits
 
 		case 'i':
 		case'I':
 			system("cls");
 
 			printf("\n\n\n\n\n\t\t\t\t\t\tEnter a word to check if the word is correct. ");
-			break;
+			break;//instructions
 
 		case'Q':
 		case'q':
 			quit = 1;
-			break;
+			break;//Quiter
 		}
 
 		system("cls");
@@ -179,7 +179,7 @@ oxy:
 		}
 		else {
 			printf("YOU WIN !!\n");
-		}
+		}//End game messages
 	}
 	else
 	{
@@ -188,7 +188,7 @@ oxy:
 		Sleep(2000);
 		system("cls");
 		goto oxy;
-	}
+	}// Wrong character  repeat
 
 	_getch();
 
