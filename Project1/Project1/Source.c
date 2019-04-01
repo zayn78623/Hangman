@@ -35,8 +35,8 @@ oxy:
 
 	printf("\n\n\n\n\n\t\t\t\tPress P to play\n\t\t\t\tPress I for Instructions\n\t\t\t\tPresss C for Credits\n\t\t\t\tPress Q to Quit\n\n\t\t\t\tYour Choice: ");
 	scanf_s("%c", &ch);
+	getchar();
 
-	
 	if (ch == 'P' || ch == 'p' || ch == 'C' || ch == 'c' || ch == 'I' || ch == 'i' || ch == 'Q' || ch == 'q')
 	{
 		switch (ch)
@@ -181,12 +181,14 @@ oxy:
 			printf("YOU WIN !!\n");
 		}
 	}
-else
-{
-	printf("\n\t\t\t\t Wrong CHOICE!!\n\t\t\t\t Enter Again");
-	system("cls");
-	goto oxy;
-}
+	else
+	{
+
+		printf("\t\t\t\t Wrong CHOICE!!\n\t\t\t\t Enter Again");
+		Sleep(2000);
+		system("cls");
+		goto oxy;
+	}
 
 	_getch();
 
