@@ -10,12 +10,14 @@ void main() {
 	srand(time(NULL));
 
 	int i, j, k, randomindex = rand() % 9;
-	char Words[][16] = { "boiii", "watermellon", "really", "baka" , "expectations" , "homoglobin" , "lover" , "program" , "random" };
+	char Words[][16] = { "boiii", "watermellon", "really", "baka", "expectations", "homoglobin", "lover", "program", "random" };
 	char word, guess[16];
 	int lengthofword = strlen(Words[randomindex]);
 	int numoflifes = 5;
 	int numcorrect = 0;
 	int oldcorrect = 0;
+
+
 	char ch;
 	printf("\t\t--------------------------------------------------------------------------\n");
 	printf("\t\t| #      #      ##      #     #   #######   #      #      ##     #     # |\n");
@@ -33,15 +35,17 @@ void main() {
 
 	//						  0 1 2 3 4 5
 	//						  W A T E R M E L L O N
-	int letterguessed[12] = { 0,0,0,0,0,0,0,0,0,0,0 , 0 };
+	int letterguessed[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
 
 	int quit = 0;
 	char letterentered;
+
 	switch (ch)
 	{
 	case 'P':
 	case'p':
+
 
 		system("cls");
 		Sleep(500);
@@ -86,7 +90,7 @@ void main() {
 			}
 
 			letterentered = guess[0];
-			printf("letterentered:%c \n", letterentered);
+			printf("letter Entered:%c \n", letterentered);
 
 			oldcorrect = numcorrect;
 
@@ -120,25 +124,61 @@ void main() {
 			{
 				printf("Correct guess\n");
 			}
+
+
 			MessageBeep(400);
 			Sleep(1000);
 			system("cls");
 
-		}//while loop
 
-		if (quit == 1)
-		{
-			printf("\nYOU QUIT!!\n");
-		}
-		else if (numoflifes == 0)
-		{
-			printf("\n  you lost.\n");
-		}
-		else {
-			printf("YOU WIN !!\n");
-		}
+
+	
+		}//while loop end
+		break;
+
+		case 'C':
+		case'c':
+			system("cls");
+			printf("\n\n\n\n\t\t\t\t\t Made by Ubaid");
+
+			_getch();
+			system("cls");
+			printf("\n\n\n\n\t\t\t\t\t Made for Anees");
+
+
+			_getch();
+			system("cls");
+			printf("\n\n\n\n\t\t\t\t\t Iqra University");
+
+
+			_getch();
+			system("cls");
+			printf("\n\n\n\n\t\t\t\t\t ok");
+			break;
+
+		case 'i':
+		case'I':
+			system("cls");
+
+			printf("\n\n\n\n\n\t\t\t\t\t\tEnter a word to check if the word is correct. ");
+			break;
 	}
-	system("pause");
+
+
+	system("cls");
+
+	if (quit == 1)
+	{
+		printf("\nYOU QUIT!!\n");
+	}
+	else if (numoflifes == 0)
+	{
+		printf("\n  you lost.\n");
+	}
+	else {
+		printf("YOU WIN !!\n");
+	}
+	_getch();
 
 
 }
