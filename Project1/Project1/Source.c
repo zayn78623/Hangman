@@ -162,6 +162,11 @@ void main() {
 
 			printf("\n\n\n\n\n\t\t\t\t\t\tEnter a word to check if the word is correct. ");
 			break;
+
+		case'Q':
+		case'q':
+			quit = 1;
+			break;
 	}
 
 
