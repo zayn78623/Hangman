@@ -4,154 +4,187 @@
 #include<string.h>
 #include<Windows.h>
 #include<dos.h>
+#include<time.h>
 #include<stdlib.h>
+
+void Hangman(int n);
+void game(char ch);
+char title();
+void loading();
+
 
 void main() {
 	srand(time(NULL));
 
-	int i, j, k, randomindex = rand() % 9;
-	char Words[][16] = { "boiii", "watermellon", "really", "baka", "expectations", "homoglobin", "lover", "program", "random" };
-	char word, guess[16];
-	int lengthofword = strlen(Words[randomindex]);
-	int numoflifes = 5;
-	int numcorrect = 0;
-	int oldcorrect = 0;
-	char letterentered;
-	int letterguessed[12] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };//checker
-	int quit = 0;
+
+	system("COLOR 3");
+
+
 	char ch;
 oxy:
+	
 
-	printf("\t\t--------------------------------------------------------------------------\n");
-	printf("\t\t| #      #      ##      #     #   #######   #      #      ##     #     # |\n");
-	printf("\t\t| #      #     #  #     ##    #   #         ##     #     #  #    ##    # |\n");
-	printf("\t\t| #      #    #    #    # #   #   #         # #   ##    #    #   # #   # |\n");
-	printf("\t\t| ########   ########   #  #  #   #  ####   #   #  #   ########  #  #  # |\n");
-	printf("\t\t| #      #   #      #   #   # #   #     #   #      #   #      #  #   # # |\n");
-	printf("\t\t| #      #   #      #   #    ##   #     #   #      #   #      #  #    ## |\n");
-	printf("\t\t| #      #   #      #   #     #   #######   #      #   #      #  #     # |\n");
-	printf("\t\t--------------------------------------------------------------------------\n");
-
-
-	printf("\n\n\n\n\n\t\t\t\tPress P to play\n\t\t\t\tPress I for Instructions\n\t\t\t\tPresss C for Credits\n\t\t\t\tPress Q to Quit\n\n\t\t\t\tYour Choice: ");
-	scanf_s("%c", &ch);
-	getchar();
+	
+	ch = title();
 
 	if (ch == 'P' || ch == 'p' || ch == 'C' || ch == 'c' || ch == 'I' || ch == 'i' || ch == 'Q' || ch == 'q')
 	{
+		game(ch);
+	}
+	else
+	{
+
+	printf("\t\t\t\t Wrong CHOICE!!\n\t\t\t\t Enter Again");
+	Sleep(2000);
+	system("cls");
+	goto oxy;
+	}// Wrong character  repeat
+
+	_getch();
+}
+
+void Hangman(int n)
+{
+	
+	(n == 5) ? printf("\n\t\t\t\t\t\t\t________\n\n\n\n\n\n\n") :
+		(n == 4) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\n\n\n\n\n") :
+		(n == 3) ? printf("\n\t\t\t\t\t\t\t________\n\\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\O/\n\n\n\n\n") :
+		(n == 2) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\O/\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t   |\n\n\n\n") :
+		(n == 1) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\O/\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  / \\\n\n\n\n") :
+		printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\X/\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  / \\\n\n\n\n");
+		
+}
+
+void game(char ch)
+{
+	int i;
+	char Words[][16] = { "boiii", "watermellon", "really", "baka", "expectations", "homoglobin", "lover", "program", "random" };
+	char word, guess[16];
+	int numoflifes = 5;
+	int score = 0;
+	int oldcorrect = 0;
+	char letterentered;
+	int Wordsguessed[9] = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };//checker
+	int quit = 0;
+
+
+	for (int j = 0; j < 9; j++)
+	{
+		int randomindex = rand() % 9;
+		int lengthofword = strlen(Words[randomindex]);
+		int letterguessed[15] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 , 0 , 0 , 0 };//checker
+		int numcorrect = 0;
+
 		switch (ch)
 		{
 		case 'P':
 		case'p':
 
-
-			system("cls");
-			Sleep(500);
-			printf("loading.");
-			Sleep(500);
-			printf(".");
-			Sleep(500);
-			printf(".");
-			Sleep(500);
-			printf(".");
-			Sleep(500);
-			printf(".");//loading
-			system("cls");
-
-			printf("\nGuess Words : %s randomindex:%d lengthofwords: %d \n",
-				Words[randomindex], randomindex, lengthofword);//word checker
-
-			//game loop
-			while (numcorrect < lengthofword)
+			if (Wordsguessed[randomindex] == 1)
 			{
-				printf("Next Turn \n WORD : ");
-				for (i = 0; i < lengthofword; i++)
-				{
+				break;
+			}
+			else
+			{
+				loading();
+				Wordsguessed[randomindex]++;
 
-					if (letterguessed[i] == 1) {
-						printf("%c", Words[randomindex][i]);
+				//game loop
+				while (numcorrect < lengthofword)
+				{
+					printf("\t\t\t\t\t\t\tNew Turn \n\t\t\t\t\t\t WORD : ");
+					for (i = 0; i < lengthofword; i++)
+					{
+
+						if (letterguessed[i] == 1)
+						{ 
+							printf("%c", Words[randomindex][i]);
+						}
+						else 
+						{
+							printf("-");
+						}
+
+					}//correct word shower
+
+					printf("\n\t\t\t\tGuess Words : %s randomindex:%d lengthofwords: %d \n",
+						Words[randomindex], randomindex, lengthofword);//word checker
+					printf("\n\t\t\t\t\t\t\tscore:%d\n", score);//Score
+					Hangman(numoflifes);
+					printf("\n\t\t\t\t\t\tLives Left :%d\n", numoflifes);//number of lives
+					printf("\t\t\t\t\tenter a letter:");
+					fgets(guess, 16, stdin);//Charater input
+
+
+					if (strncmp(guess, "quit", 4) == 0) {
+						quit = 1;
+						break;
+					}//if character types quit the game ends
+
+					letterentered = guess[0];
+					printf("\n\t\t\t\t\t\tletter Entered:%c \n", letterentered);//Letter entered debugging
+					
+
+					oldcorrect = numcorrect;
+
+					for (i = 0; i < lengthofword; i++)
+					{
+						if (letterguessed[i] == 1)
+						{
+							continue;
+						}
+						if (letterentered == Words[randomindex][i])
+						{
+							letterguessed[i] = 1;
+							++numcorrect;
+							score++;
+						}//Score increaser
+
+
+
+
+					}
+					if (oldcorrect == numcorrect)
+					{
+						numoflifes--;
+						printf("\t\t\t\t\t\tsorry, Wrong guess\n");
+
+						if (numoflifes == 0) {
+							break;
+						}//no of lifes counter
+
 					}
 					else
 					{
-						printf("-");
-					}
-				}//correct word shower
+						printf("\t\t\t\t\t\tCorrect guess\n");
+					}//Result shower
 
-				printf("\nscore:%d\n", numcorrect);//Score
-				printf("Lives Left :%d\n", numoflifes);//number of lives
-				printf("enter a letter:");
-				fgets(guess, 16, stdin);//Charater input
 
-				if (strncmp(guess, "quit", 4) == 0) {
-					quit = 1;
-					break;
-				}//if character types quit the game ends
-
-				letterentered = guess[0];
-				printf("letter Entered:%c \n", letterentered);//Letter entered debugging
-
-				oldcorrect = numcorrect;
-
-				for (i = 0; i < lengthofword; i++)
-				{
-					if (letterguessed[i] == 1)
-					{
-						continue;
-					}
-					if (letterentered == Words[randomindex][i])
-					{
-						letterguessed[i] = 1;
-						++numcorrect;
-					}//Score increaser
+					MessageBeep(400);
+					Sleep(1000);
+					system("cls");
 
 
 
 
 				}
-				if (oldcorrect == numcorrect)
-				{
-					numoflifes--;
-					printf("sorry Wrong guess\n");
-
-					if (numoflifes == 0) {
-						break;
-					}//no of lifes counter
-
-				}
-				else
-				{
-					printf("Correct guess\n");
-				}//Result shower
-
-
-				MessageBeep(400);
-				Sleep(1000);
-				system("cls");
-
-
-
-
 			}//while loop end
 			break;
 
 		case 'C':
 		case'c':
 			system("cls");
-			printf("\n\n\n\n\t\t\t\t\t Made by Ubaid");
+			printf("\n\n\n\n\t\t\t\t\t Made by Pir UbaidUllah Jan Sarhandi , Hasnain Ali & Areeba Azam");
 
 			_getch();
 			system("cls");
-			printf("\n\n\n\n\t\t\t\t\t Made for Anees");
+			printf("\n\n\n\n\t\t\t\t\t Made for Sir Anees Ahmed");
 
 
 			_getch();
 			system("cls");
 			printf("\n\n\n\n\t\t\t\t\t Iqra University");
 
-
-			_getch();
-			system("cls");
-			printf("\n\n\n\n\t\t\t\t\t ok");
 			break;// Credits
 
 		case 'i':
@@ -165,32 +198,68 @@ oxy:
 		case'q':
 			quit = 1;
 			break;//Quiter
+
+
+
+			
+
 		}
 
 		system("cls");
-
-		if (quit == 1)
-		{
-			printf("\nYOU QUIT!!\n");
+		if (quit == 1) {
+			printf("\n YOU QUIT!!!\n");
+			break;
 		}
 		else if (numoflifes == 0)
 		{
-			printf("\n  you lost.\n");
+			printf("\n  YOU LOST!!\n");
+			break;
 		}
-		else {
+		else
+		{
 			printf("YOU WIN !!\n");
 		}//End game messages
+		
 	}
-	else
-	{
-
-		printf("\t\t\t\t Wrong CHOICE!!\n\t\t\t\t Enter Again");
-		Sleep(2000);
-		system("cls");
-		goto oxy;
-	}// Wrong character  repeat
-
-	_getch();
-
-
+	
 }
+
+char title()
+{
+	 char ch;
+	printf("\t\t--------------------------------------------------------------------------\n");
+	printf("\t\t| #      #      ##      #     #   #######   #      #      ##     #     # |\n");
+	printf("\t\t| #      #     #  #     ##    #   #         ##     #     #  #    ##    # |\n");
+	printf("\t\t| #      #    #    #    # #   #   #         # #   ##    #    #   # #   # |\n");
+	printf("\t\t| ########   ########   #  #  #   #  ####   #   #  #   ########  #  #  # |\n");
+	printf("\t\t| #      #   #      #   #   # #   #     #   #      #   #      #  #   # # |\n");
+	printf("\t\t| #      #   #      #   #    ##   #     #   #      #   #      #  #    ## |\n");
+	printf("\t\t| #      #   #      #   #     #   #######   #      #   #      #  #     # |\n");
+	printf("\t\t--------------------------------------------------------------------------\n");
+
+	printf("\n\t\t\t\t\t________\n\t\t\t\t\t   |\n\t\t\t\t\t  \\O/\n\t\t\t\t\t   |\n\t\t\t\t\t   |\n\t\t\t\t\t  / \\");
+	printf("\n\t\t\t\t\tSAVE ME!!");
+	printf("\n\n\n\n\n\t\t\t\tPress P to play\n\t\t\t\tPress I for Instructions\n\t\t\t\tPresss C for Credits\n\t\t\t\tPress Q to Quit\n\n\t\t\t\tYour Choice: ");
+	scanf_s("%c", &ch);
+	getchar();
+	return ch;
+}
+
+void loading() {
+
+
+	system("cls");
+	Sleep(500);
+	printf("\n\n\n\n\n\n\n\t\t\t\t\t\t\tloading.");
+	Sleep(500);
+	printf(".");
+	Sleep(500);
+	printf(".");
+	Sleep(500);
+	printf(".");
+	Sleep(500);
+	printf(".");
+	system("cls");
+}
+
+
