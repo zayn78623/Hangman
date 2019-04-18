@@ -48,7 +48,7 @@ void Hangman(int n)
 	
 	(n == 5) ? printf("\n\t\t\t\t\t\t\t________\n\n\n\n\n\n\n") :
 		(n == 4) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\n\n\n\n\n") :
-		(n == 3) ? printf("\n\t\t\t\t\t\t\t________\n\\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\O/\n\n\n\n\n") :
+		(n == 3) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\O/\n\n\n\n\n") :
 		(n == 2) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\O/\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t   |\n\n\n\n") :
 		(n == 1) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\O/\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  / \\\n\n\n\n") :
 		printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\X/\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  / \\\n\n\n\n");
