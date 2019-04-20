@@ -18,8 +18,6 @@ void instructions();
 void main() {
 		system("COLOR 5B");
 		char ch;
-	
-		printf("lol");
 
 		for (int i = 0; i <= 1; i++)
 		{
@@ -130,7 +128,8 @@ void game()
 
 		if (Wordsguessed[randomindex] == 1)
 		{
-			break;
+			j--;
+			continue;
 		}
 		else
 		{
@@ -195,11 +194,9 @@ void game()
 				if (oldcorrect == numcorrect)
 				{
 					numoflifes--;
-					printf("\t\t\t\t\t\tsorry, Wrong guess\n");
+					printf("\t\t\t\t\t\tsorry, Wrong guess\n");					
 
-					
-
-				}
+				}//no of lifes counter
 				else
 				{
 					printf("\t\t\t\t\t\tCorrect guess\n");
@@ -220,7 +217,7 @@ void game()
 				}
 				else if (numcorrect == lengthofword)
 				{
-					printf("YOU WIN !!\n");
+					printf("\n\n\n\t\t\t\t\t\t YOU WIN !!\n");
 				}//End game messages
 
 
@@ -228,13 +225,13 @@ void game()
 					Hangman(numoflifes);
 					_getch();
 						break;
-				}//no of lifes counter
-			}
+				}
+			}//while loop end
 		}
 		if (numoflifes == 0 || quit == 1 )
 		{
 			break;
-		}//while loop end
+		}
 	}
 }
 
@@ -251,17 +248,15 @@ void credits()
 	system("cls");
 	printf("\n\n\n\n\t\t\t\t\t Iqra University");
 	_getch();
-	system("cls");
-
+	
 }
 
 void instructions()
 {
 	system("cls");
-
 	printf("\n\n\n\n\n\t\t\t\t\t\tEnter a word to check if the word is correct.\n\n\t\t\t\t The game will continue until you either type 'quit' or you lose lifes.  ");
 	_getch();
-	system("cls");
+	
 
 }
 
