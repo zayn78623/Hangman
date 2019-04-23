@@ -3,63 +3,61 @@
 #include<ctype.h>
 #include<string.h>
 #include<Windows.h>
-#include<dos.h>
-#include<time.h>
-#include<stdlib.h>
 
-void Hangman(int n);
+
 char title();
-void loading();
-void game();
 void credits();
 void instructions();
+void Hangman(int n);
+void loading();
+void game();
+
 
 
 void main() {
-		system("COLOR 5B");
+		system("COLOR 3");
 		char ch;
+		int i = 0;
 
-		for (int i = 0; i <= 1; i++)
+		while(i == 0)
 		{
 		
-		
-
+	
 			ch = title();
 			switch (ch)
 			{
 			case 'P':
 			case 'p':
 				game(ch);
+				i++;
 				_getch();
 				break;
 
 			case 'C':
 			case 'c':
 				credits();
-				i--;
 				break;
 
 			case 'I':
 			case 'i':
 				instructions();
-				i--;
 				break;
 
 			case 'Q':
 			case 'q':
 				printf("\n\n\n\n\t\t\t\t\tYOU QUIT MATE!");
+				i++;
 				break;
 
 			default:
 				printf("Wrong Choice");
-				i--;
 				Sleep(2000);
 				break;
 
 
 			}
 		}
-	_getch();
+		_getch();
 }
 
 
@@ -71,9 +69,9 @@ char title()
 
 	printf("\t\t--------------------------------------------------------------------------\n");
 	printf("\t\t| #      #      ##      #     #   #######   #      #      ##     #     # |\n");
-	printf("\t\t| #      #     #  #     ##    #   #         ##     #     #  #    ##    # |\n");
-	printf("\t\t| #      #    #    #    # #   #   #         # #   ##    #    #   # #   # |\n");
-	printf("\t\t| ########   ########   #  #  #   #  ####   #   #  #   ########  #  #  # |\n");
+	printf("\t\t| #      #     #  #     ##    #   #         ##    ##     #  #    ##    # |\n");
+	printf("\t\t| #      #    #    #    # #   #   #         # #  # #    #    #   # #   # |\n");
+	printf("\t\t| ########   ########   #  #  #   #  ####   #  ##  #   ########  #  #  # |\n");
 	printf("\t\t| #      #   #      #   #   # #   #     #   #      #   #      #  #   # # |\n");
 	printf("\t\t| #      #   #      #   #    ##   #     #   #      #   #      #  #    ## |\n");
 	printf("\t\t| #      #   #      #   #     #   #######   #      #   #      #  #     # |\n");
@@ -110,7 +108,7 @@ void game()
 	srand(time(NULL));
 	int i;
 	char Words[][16] = { "boiii", "watermellon", "really", "baka", "expectations", "homoglobin", "lover", "program", "random" };
-	char word, guess[16];
+	char guess[16];
 	int numoflifes = 5;
 	int score = 0;
 	int oldcorrect = 0;
@@ -120,8 +118,8 @@ void game()
 
 	for (int j = 0; j < 9; j++)
 	{
-
-		int randomindex = rand() % 9;
+										
+		int randomindex = rand() % 9; 
 		int lengthofword = strlen(Words[randomindex]);
 		int letterguessed[15] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 , 0 , 0 , 0 };//checker
 		int numcorrect = 0;
@@ -154,22 +152,26 @@ void game()
 
 				}//correct word shower
 
+
 				printf("\n\t\t\t\tGuess Words : %s randomindex:%d lengthofwords: %d \n",
 					Words[randomindex], randomindex, lengthofword);//word checker
 				printf("\n\t\t\t\t\t\t\tscore:%d\n", score);//Score
+
 				Hangman(numoflifes);
+
 				printf("\n\t\t\t\t\t\tLives Left :%d\n", numoflifes);//number of lives
-				printf("\t\t\t\t\tenter a letter:");
+				printf("\t\t\t\t\t        Enter a letter:");
 				fgets(guess, 16, stdin);//Charater input
 
 				_strlwr_s(guess , 16);
+
 				if (strncmp(guess, "quit", 4) == 0) {
 					quit = 1;
 					break;
 				}//if character types quit the game ends
 
 				letterentered = guess[0];
-				printf("\n\t\t\t\t\t\tletter Entered:%c \n", letterentered);//Letter entered debugging
+				printf("\n\t\t\t\t\t\tLetter Entered:%c \n", letterentered);//Letter entered debugging
 
 
 				oldcorrect = numcorrect;
@@ -180,17 +182,15 @@ void game()
 					{
 						continue;
 					}
+
 					if (letterentered == Words[randomindex][i])
 					{
 						letterguessed[i] = 1;
 						++numcorrect;
 						score++;
 					}//Score increaser
+				}// loop end 
 
-
-
-
-				}
 				if (oldcorrect == numcorrect)
 				{
 					numoflifes--;
@@ -206,18 +206,21 @@ void game()
 				MessageBeep(400);
 				Sleep(1000);
 				system("cls");
+
 				if (quit == 1) {
 					printf("\n\t\t\t\t\t\t\t\t YOU QUIT!!!\n");
 					break;
 				}
 				else if (numoflifes == 0)
 				{
-					printf("\n\t\t\t\t\t\t\t  YOU LOST!!\n");
+					printf("\n\t\t\t\t\t\t\tYOU LOST!!\n");
 					
 				}
 				else if (numcorrect == lengthofword)
 				{
-					printf("\n\n\n\t\t\t\t\t\t YOU WIN !!\n");
+					printf("\n\n\n\t\t\t\t\t\t CORRECT WORD !! NEXT!?\n");
+					Sleep(2000);
+					
 				}//End game messages
 
 
@@ -228,6 +231,7 @@ void game()
 				}
 			}//while loop end
 		}
+
 		if (numoflifes == 0 || quit == 1 )
 		{
 			break;
@@ -238,11 +242,11 @@ void game()
 void credits()
 {
 	system("cls");
-	printf("\n\n\n\n\t\t\t\t\t Made by Pir UbaidUllah Jan Sarhandi , Hasnain Ali & Areeba Azam");
+	printf("\n\n\n\n\t\t\t\t\t Made by Pir UbaidUllah Jan Sarhandi \n\n\t\t\t\t\t Hasnain Ali \n\n\t\t\t\t\t Areeba Azam");
 	_getch();
 
 	system("cls");
-	printf("\n\n\n\n\t\t\t\t\t Made for Sir Anees Ahmed");
+	printf("\n\n\n\n\t\t\t\t\t Made for Sir Anees Ahmed\n\n\t\t\t\t\t\t Miss Ruksana Majeed \n\n\t\t\t\t\t\t Miss Sania Marium");
 	_getch();
 
 	system("cls");
