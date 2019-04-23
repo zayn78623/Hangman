@@ -14,7 +14,8 @@ void game();
 
 
 
-void main() {
+void main()
+{
 		system("COLOR 3");
 		char ch;
 		int i = 0;
@@ -30,7 +31,6 @@ void main() {
 			case 'p':
 				game(ch);
 				i++;
-				_getch();
 				break;
 
 			case 'C':
@@ -85,6 +85,44 @@ char title()
 	return ch;
 }
 
+
+void credits()
+{
+	system("cls");
+	printf("\n\n\n\n\t\t\t\t\t Made by Pir UbaidUllah Jan Sarhandi \n\n\t\t\t\t\t Hasnain Ali \n\n\t\t\t\t\t Areeba Azam");
+	_getch();
+
+	system("cls");
+	printf("\n\n\n\n\t\t\t\t\t Made for Sir Anees Ahmed\n\n\t\t\t\t\t\t Miss Ruksana Majeed \n\n\t\t\t\t\t\t Miss Sania Marium");
+	_getch();
+
+	system("cls");
+	printf("\n\n\n\n\t\t\t\t\t Iqra University");
+	_getch();
+	
+}
+
+void instructions()
+{
+	system("cls");
+	printf("\n\n\n\n\n\t\t\t\t\t\tEnter a word to check if the word is correct.\n\n\t\t\t\t The game will continue until you either type 'quit' or you lose lifes.  ");
+	_getch();
+	
+
+}
+
+void Hangman(int n)
+{
+
+		(n == 5) ? printf("\n\t\t\t\t\t\t\t________\n\n\n\n\n\n\n") :
+		(n == 4) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\n\n\n\n\n") :
+		(n == 3) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\O/\n\n\n\n\n") :
+		(n == 2) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\O/\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t   |\n\n\n\n") :
+		(n == 1) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\O/\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  / \\\n\n\n\n") :
+		printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\X/\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  / \\\n\n\n\n");
+
+}
+
 void loading() {
 
 
@@ -118,8 +156,8 @@ void game()
 
 	for (int j = 0; j < 9; j++)
 	{
-										
-		int randomindex = rand() % 9; 
+
+		int randomindex = rand() % 9;
 		int lengthofword = strlen(Words[randomindex]);
 		int letterguessed[15] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 , 0 , 0 , 0 };//checker
 		int numcorrect = 0;
@@ -163,7 +201,7 @@ void game()
 				printf("\t\t\t\t\t        Enter a letter:");
 				fgets(guess, 16, stdin);//Charater input
 
-				_strlwr_s(guess , 16);
+				_strlwr_s(guess, 16);
 
 				if (strncmp(guess, "quit", 4) == 0) {
 					quit = 1;
@@ -194,7 +232,7 @@ void game()
 				if (oldcorrect == numcorrect)
 				{
 					numoflifes--;
-					printf("\t\t\t\t\t\tsorry, Wrong guess\n");					
+					printf("\t\t\t\t\t\tsorry, Wrong guess\n");
 
 				}//no of lifes counter
 				else
@@ -202,7 +240,7 @@ void game()
 					printf("\t\t\t\t\t\tCorrect guess\n");
 				}//Result shower
 
-			
+
 				MessageBeep(400);
 				Sleep(1000);
 				system("cls");
@@ -214,65 +252,27 @@ void game()
 				else if (numoflifes == 0)
 				{
 					printf("\n\t\t\t\t\t\t\tYOU LOST!!\n");
-					
+
 				}
 				else if (numcorrect == lengthofword)
 				{
 					printf("\n\n\n\t\t\t\t\t\t CORRECT WORD !! NEXT!?\n");
 					Sleep(2000);
-					
+
 				}//End game messages
 
 
 				if (numoflifes == 0) {
 					Hangman(numoflifes);
 					_getch();
-						break;
+					break;
 				}
 			}//while loop end
 		}
 
-		if (numoflifes == 0 || quit == 1 )
+		if (numoflifes == 0 || quit == 1)
 		{
 			break;
 		}
 	}
 }
-
-void credits()
-{
-	system("cls");
-	printf("\n\n\n\n\t\t\t\t\t Made by Pir UbaidUllah Jan Sarhandi \n\n\t\t\t\t\t Hasnain Ali \n\n\t\t\t\t\t Areeba Azam");
-	_getch();
-
-	system("cls");
-	printf("\n\n\n\n\t\t\t\t\t Made for Sir Anees Ahmed\n\n\t\t\t\t\t\t Miss Ruksana Majeed \n\n\t\t\t\t\t\t Miss Sania Marium");
-	_getch();
-
-	system("cls");
-	printf("\n\n\n\n\t\t\t\t\t Iqra University");
-	_getch();
-	
-}
-
-void instructions()
-{
-	system("cls");
-	printf("\n\n\n\n\n\t\t\t\t\t\tEnter a word to check if the word is correct.\n\n\t\t\t\t The game will continue until you either type 'quit' or you lose lifes.  ");
-	_getch();
-	
-
-}
-
-void Hangman(int n)
-{
-
-		(n == 5) ? printf("\n\t\t\t\t\t\t\t________\n\n\n\n\n\n\n") :
-		(n == 4) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\n\n\n\n\n") :
-		(n == 3) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\O/\n\n\n\n\n") :
-		(n == 2) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\O/\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t   |\n\n\n\n") :
-		(n == 1) ? printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\O/\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  / \\\n\n\n\n") :
-		printf("\n\t\t\t\t\t\t\t________\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  \\X/\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t   |\n\t\t\t\t\t\t\t  / \\\n\n\n\n");
-
-}
-
